@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ListGroup } from "react-bootstrap";
+import { Container, Row, Col, ListGroup } from "react-bootstrap";
 
 import "./style.css";
 
@@ -18,12 +18,19 @@ class Income extends Component {
 
   render() {
     // destructing
-    const { title, description } = this.props;
+    const { title, balance } = this.props;
     const { count } = this.state;
     return (
       <>
         <div className="shadow p-4 bg-success">
-          {title} - {description}
+          <Container>
+            <Row>
+              <Col>{title}</Col>
+              <Col className="text-right font-weight-bold text-light">
+                {balance}
+              </Col>
+            </Row>
+          </Container>
         </div>
         <ListGroup>
           <ListGroup.Item>Cras justo odio</ListGroup.Item>

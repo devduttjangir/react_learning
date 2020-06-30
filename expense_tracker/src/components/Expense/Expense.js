@@ -1,14 +1,21 @@
 import React, { Component } from "react";
-import { ListGroup } from "react-bootstrap";
+import { Container, Row, Col, ListGroup } from "react-bootstrap";
 import "./style.css";
 
 class Expense extends Component {
   render() {
-    const { title, description } = this.props;
+    const { title, balance } = this.props;
     return (
       <>
         <div className="shadow p-4 bg-warning">
-          {title} - {description}
+          <Container>
+            <Row>
+              <Col>{title}</Col>
+              <Col className="text-right font-weight-bold text-dark">
+                {balance}
+              </Col>
+            </Row>
+          </Container>
         </div>
         <div>
           <ListGroup>
