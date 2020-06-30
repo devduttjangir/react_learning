@@ -11,21 +11,6 @@ class Root extends React.Component {
       balance: 1000,
     };
   }
-  addIncome = () => {
-    const { income, balance } = this.state;
-    this.setState({
-      income: income + 100,
-      balance: balance + 100,
-    });
-  };
-
-  addExpense = () => {
-    const { income, balance } = this.state;
-    this.setState({
-      income: income,
-      balance: balance - 100,
-    });
-  };
 
   render() {
     const { income, balance } = this.state;
@@ -36,23 +21,8 @@ class Root extends React.Component {
             <div className="shadow p-2 my-2 bg-danger text-light">
               <Container>
                 <Row>
-                  <Col className="display-4">Expense Tracker {balance}</Col>
-                  <Col className="text-right text-light">
-                    <Button
-                      className="font-weight-bold mx-1"
-                      variant="success"
-                      onClick={this.addIncome}
-                    >
-                      +
-                    </Button>
-                    <Button
-                      className="font-weight-bold mx-1"
-                      variant="warning"
-                      onClick={this.addExpense}
-                    >
-                      -
-                    </Button>
-                  </Col>
+                  <Col className="display-4">Expense Tracker </Col>
+                  <Col className="text-right text-light">{balance}</Col>
                 </Row>
               </Container>
             </div>

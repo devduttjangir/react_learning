@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Row, Col, ListGroup } from "react-bootstrap";
+import { Button, Container, Row, Col, ListGroup } from "react-bootstrap";
 
 import "./style.css";
 
@@ -8,6 +8,14 @@ class Income extends Component {
     super(props);
     this.state = { count: 0 };
   }
+
+  addIncome = () => {
+    const { income, balance } = this.state;
+    this.setState({
+      income: income + 100,
+      balance: balance + 100,
+    });
+  };
 
   increment = () => {
     const { count } = this.state;
@@ -28,6 +36,15 @@ class Income extends Component {
               <Col>{title}</Col>
               <Col className="text-right font-weight-bold text-light">
                 {balance}
+              </Col>
+              <Col className="d-flex justify-content-end">
+                <Button
+                  className="font-weight-bold mx-1  border border-light"
+                  variant="success"
+                  onClick={this.addIncome}
+                >
+                  +
+                </Button>
               </Col>
             </Row>
           </Container>

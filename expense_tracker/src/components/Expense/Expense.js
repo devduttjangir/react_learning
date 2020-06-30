@@ -1,18 +1,35 @@
 import React, { Component } from "react";
-import { Container, Row, Col, ListGroup } from "react-bootstrap";
+import { Button, Container, Row, Col, ListGroup } from "react-bootstrap";
 import "./style.css";
 
 class Expense extends Component {
+  addExpense = () => {
+    const { income, balance } = this.state;
+    this.setState({
+      income: income,
+      balance: balance - 100,
+    });
+  };
+
   render() {
     const { title, balance } = this.props;
     return (
       <>
-        <div className="shadow p-4 bg-warning">
+        <div className="shadow p-3 bg-warning">
           <Container>
             <Row>
-              <Col>{title}</Col>
+              <Col className="align-middle">{title}</Col>
               <Col className="text-right font-weight-bold text-dark">
                 {balance}
+              </Col>
+              <Col className="d-flex justify-content-end">
+                <Button
+                  className="font-weight-bold mx-1 border border-danger"
+                  variant="warning"
+                  onClick={this.addExpense}
+                >
+                  -
+                </Button>
               </Col>
             </Row>
           </Container>
