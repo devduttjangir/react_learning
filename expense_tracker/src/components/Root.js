@@ -12,6 +12,15 @@ class Root extends React.Component {
     };
   }
 
+  updateBalance = (value) => {
+    const { balance, income } = this.state;
+    if (value < 0) {
+      this.setState({ ...this.state, balance: balance + value });
+    } else {
+      this.setState({ income: income + value, balance: balance + value });
+    }
+  };
+
   render() {
     const { income, balance } = this.state;
     return (
@@ -30,10 +39,18 @@ class Root extends React.Component {
         </Row>
         <Row>
           <Col>
-            <Income title="Income" balance={income} />
+            <Income
+              title="Income"
+              balance={income}
+              updateBalance={this.updateBalance}
+            />
           </Col>
           <Col>
-            <Expense title="Expense" balance={income - balance} />
+            <Expense
+              title="Expense"
+              balance={income - balance}
+              updateBalance={this.updateBalance}
+            />
           </Col>
         </Row>
       </Container>
