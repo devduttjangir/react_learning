@@ -19,7 +19,7 @@ class Expense extends Component {
     });
     this.setState({
       expenseItems: expenseItems,
-      showAlert: true,
+      // showAlert: true,
     });
     updateExpense(100);
   };

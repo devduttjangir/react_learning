@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button, Container, Row, Col, ListGroup } from "react-bootstrap";
+import FinanceItem from "../Finance/FinanceItem";
 
 import "./style.css";
 
@@ -38,11 +39,11 @@ class Income extends Component {
 
   renderIncomeItems = () => {
     const { incomeItems } = this.state;
-    const currentDate = new Date().toDateString();
+    // const currentDate = new Date().toDateString();
     return incomeItems.map((item) => {
       return (
         <ListGroup.Item>
-          New Income Added - {item.income} {currentDate}
+          <FinanceItem title="New Income added" />
         </ListGroup.Item>
       );
     });
