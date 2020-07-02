@@ -3,11 +3,29 @@ import { Button, Container, Row, Col, ListGroup } from "react-bootstrap";
 import "./style.css";
 
 class Expense extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      expenseItems: [],
+    };
+  }
+
   addExpense = () => {
-    const { income, balance } = this.state;
+    const { updateExpense } = this.props;
+    const { expenseItems } = this.state;
+    expenseItems.push({
+      expenseTitle: "New Expense Created " + new Date().toDateString(),
+    });
     this.setState({
-      income: income,
-      balance: balance - 100,
+      expenseItems: expenseItems,
+    });
+    updateExpense(100);
+  };
+
+  renderExpenses = () => {
+    const { expenseItems } = this.state;
+    return expenseItems.map((item) => {
+      return <ListGroup.Item>{item.expenseTitle}</ListGroup.Item>;
     });
   };
 
@@ -35,13 +53,7 @@ class Expense extends Component {
           </Container>
         </div>
         <div>
-          <ListGroup>
-            <ListGroup.Item>Cras justo odio</ListGroup.Item>
-            <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-            <ListGroup.Item>Morbi leo risus</ListGroup.Item>
-            <ListGroup.Item>Porta ac consectetur ac</ListGroup.Item>
-            <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-          </ListGroup>
+          <ListGroup>{this.renderExpenses()}</ListGroup>
         </div>
       </>
     );

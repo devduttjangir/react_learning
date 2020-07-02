@@ -10,14 +10,14 @@ class Income extends Component {
   }
 
   addIncome = () => {
-    const { updateBalance } = this.props;
+    const { updateIncome } = this.props;
     const { incomeItems } = this.state;
     // add new income in income array
     incomeItems.push({ income: 100 });
     this.setState({
       incomeItems: incomeItems,
     });
-    updateBalance(100);
+    updateIncome(100);
   };
 
   renderIncomeItems = () => {

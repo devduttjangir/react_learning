@@ -9,25 +9,58 @@ class Root extends React.Component {
     this.state = {
       income: 1000,
       balance: 1000,
+      expense: 0,
     };
   }
 
-  updateBalance = (value) => {
-    const { balance, income } = this.state;
-    if (value < 0) {
-      this.setState({ ...this.state, balance: balance + value });
+  updateIncome = (value) => {
+    let { income, balance } = this.state;
+    income = income + value;
+    balance = balance + value;
+    this.setState({
+      ...this.state,
+      income: income,
+      balance: balance,
+    });
+  };
+
+  updateExpense = (value) => {
+    let { expense, balance } = this.state;
+    expense = expense + value;
+    balance = balance - value;
+    this.setState({
+      ...this.state,
+      expense: expense,
+      balance: balance,
+    });
+  };
+
+  calculatePercentage = () => {
+    const { income, balance } = this.state;
+    let percentage = (balance * 100) / income;
+    return percentage;
+  };
+
+  expenseBGStyle = () => {
+    let percentage = this.calculatePercentage();
+    if (percentage > 80) {
+      return "bg-success";
+    } else if (percentage > 55) {
+      return "bg-warning";
     } else {
-      this.setState({ income: income + value, balance: balance + value });
+      return "bg-danger";
     }
   };
 
   render() {
-    const { income, balance } = this.state;
+    const { income, balance, expense } = this.state;
+
+    const expenseStyle = "shadow p-2 my-2 text-light " + this.expenseBGStyle();
     return (
       <Container>
         <Row>
           <Col>
-            <div className="shadow p-2 my-2 bg-danger text-light">
+            <div className={expenseStyle}>
               <Container>
                 <Row>
                   <Col className="display-4">Expense Tracker </Col>
@@ -42,14 +75,14 @@ class Root extends React.Component {
             <Income
               title="Income"
               balance={income}
-              updateBalance={this.updateBalance}
+              updateIncome={this.updateIncome}
             />
           </Col>
           <Col>
             <Expense
               title="Expense"
-              balance={income - balance}
-              updateBalance={this.updateBalance}
+              balance={expense}
+              updateExpense={this.updateExpense}
             />
           </Col>
         </Row>
