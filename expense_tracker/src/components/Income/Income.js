@@ -9,6 +9,22 @@ class Income extends Component {
     this.state = { incomeItems: [] };
   }
 
+  componentDidMount() {
+    console.log("income mounted");
+    window.document.title = "clicked " + this.state.incomeItems.length;
+  }
+
+  componentDidUpdate() {
+    window.document.title = "clicked " + this.state.incomeItems.length;
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    console.log("----------getDerivedStateFromProps--------");
+    console.log(props);
+    console.log(state);
+    console.log("----------getDerivedStateFromProps--------");
+  }
+
   addIncome = () => {
     const { updateIncome } = this.props;
     const { incomeItems } = this.state;
@@ -35,7 +51,7 @@ class Income extends Component {
   render() {
     // destructing
     const { title, balance } = this.props;
-
+    console.log("income render called");
     return (
       <>
         <div className="shadow p-3 bg-success">

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Container, Row, Col, ListGroup } from "react-bootstrap";
+import { Alert, Button, Container, Row, Col, ListGroup } from "react-bootstrap";
 import "./style.css";
 
 class Expense extends Component {
@@ -7,6 +7,7 @@ class Expense extends Component {
     super(props);
     this.state = {
       expenseItems: [],
+      showAlert: false,
     };
   }
 
@@ -18,6 +19,7 @@ class Expense extends Component {
     });
     this.setState({
       expenseItems: expenseItems,
+      showAlert: true,
     });
     updateExpense(100);
   };
@@ -29,11 +31,28 @@ class Expense extends Component {
     });
   };
 
+  hideAlert = () => {
+    this.setState({
+      ...this.state,
+      showAlert: false,
+    });
+  };
   render() {
     const { title, balance } = this.props;
+    const { showAlert } = this.state;
     return (
       <>
         <div className="shadow p-3 bg-warning">
+          {showAlert && (
+            <Alert
+              key={1}
+              variant={"primary"}
+              onClose={() => this.hideAlert()}
+              dismissible
+            >
+              This is a alert—check it out!
+            </Alert>
+          )}
           <Container>
             <Row>
               <Col className="align-middle">{title}</Col>
