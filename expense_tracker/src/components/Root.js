@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Container, Row, Col } from "react-bootstrap";
 import Income from "./Income/Income";
 import Expense from "./Expense/Expense";
-
+import TimeTable from "./TimeTable/TimeTable";
 class Root extends React.Component {
   constructor() {
     super();
@@ -84,6 +84,14 @@ class Root extends React.Component {
               balance={expense}
               updateExpense={this.updateExpense}
             />
+          </Col>
+        </Row>
+        <Row className="py-3">
+          <Col></Col>
+        </Row>
+        <Row>
+          <Col>
+            <TimeTable />
           </Col>
         </Row>
       </Container>
