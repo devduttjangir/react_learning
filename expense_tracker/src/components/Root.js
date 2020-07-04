@@ -1,8 +1,11 @@
 import React from "react";
-import { Button, Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import Income from "./Income/Income";
 import Expense from "./Expense/Expense";
 import TimeTable from "./TimeTable/TimeTable";
+import Counter from "./Counter/Count";
+import AddAmount from "./AddAmount";
+
 class Root extends React.Component {
   constructor() {
     super();
@@ -58,6 +61,9 @@ class Root extends React.Component {
     const expenseStyle = "shadow p-2 my-2 text-light " + this.expenseBGStyle();
     return (
       <Container>
+        <Row>
+          <Col>{/* <AddAmount /> */}</Col>
+        </Row>
         <Row>
           <Col>
             <div className={expenseStyle}>

@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { Button, Container, Row, Col, ListGroup } from "react-bootstrap";
 import FinanceItem from "../Finance/FinanceItem";
+import AddAmount from "../AddAmount";
 
 import "./style.css";
 
 class Income extends Component {
   constructor(props) {
     super(props);
-    this.state = { incomeItems: [] };
+    this.state = { incomeItems: [], showModal: false };
   }
 
   componentDidMount() {
@@ -27,14 +28,17 @@ class Income extends Component {
   }
 
   addIncome = () => {
-    const { updateIncome } = this.props;
-    const { incomeItems } = this.state;
-    // add new income in income array
-    incomeItems.push({ income: 100 });
     this.setState({
-      incomeItems: incomeItems,
+      showModal: true,
     });
-    updateIncome(100);
+    // const { updateIncome } = this.props;
+    // const { incomeItems } = this.state;
+    // // add new income in income array
+    // incomeItems.push({ income: 100 });
+    // this.setState({
+    //   incomeItems: incomeItems,
+    // });
+    // updateIncome(100);
   };
 
   renderIncomeItems = () => {
@@ -49,12 +53,19 @@ class Income extends Component {
     });
   };
 
+  handleClose = () => {
+    this.setState({
+      showModal: false,
+    });
+  };
   render() {
     // destructing
     const { title, balance } = this.props;
+    const { showModal } = this.state;
     console.log("income render called");
     return (
       <>
+        <AddAmount showModal={showModal} handleClose={this.handleClose} />
         <div className="shadow p-3 bg-success">
           <Container>
             <Row>

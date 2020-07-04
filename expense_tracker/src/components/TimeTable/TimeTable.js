@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import Period from "./Period";
 import "./style.css";
 
 class TimeTable extends Component {
@@ -7,6 +8,16 @@ class TimeTable extends Component {
     super();
     this.state = {
       days: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      periods: [
+        "1st Period",
+        "2nd Period",
+        "3rd Period",
+        "4th Period",
+        "5th Period",
+        "6th Period",
+        "7th Period",
+        "8th Period",
+      ],
     };
   }
 
@@ -34,23 +45,31 @@ class TimeTable extends Component {
     });
   };
 
+  renderPeriods = () => {
+    const { periods } = this.state;
+    return periods.map((period, index) => {
+      return (
+        <Col className="p-0">
+          <Period>
+            {index % 2 === 0 ? (
+              <div className="bg-danger py-2 px-3 mx-1">{period}</div>
+            ) : (
+              <div className="bg-warning py-2 px-3 mx-1">{period}</div>
+            )}
+          </Period>
+        </Col>
+      );
+    });
+  };
+
   render() {
     return (
       <Container>
         <Row>
           <Col className="period col-1"></Col>
           <Col>
-            <Container>
-              <Row>
-                <Col>1st Period</Col>
-                <Col>2nd Period</Col>
-                <Col>3rd Period</Col>
-                <Col>4th Period</Col>
-                <Col>5th Period</Col>
-                <Col>6th Period</Col>
-                <Col>7th Period</Col>
-                <Col>8th Period</Col>
-              </Row>
+            <Container fluid>
+              <Row>{this.renderPeriods()}</Row>
             </Container>
           </Col>
         </Row>
