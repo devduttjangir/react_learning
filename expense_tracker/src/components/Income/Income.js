@@ -47,11 +47,23 @@ class Income extends Component {
     return incomeItems.map((item) => {
       return (
         <ListGroup.Item>
-          <FinanceItem title="New Income added" />
+          <FinanceItem title={item.description+" "+item.amount}/>
         </ListGroup.Item>
       );
     });
   };
+  incomeAdded=(amount,description)=>
+  { 
+    const { updateIncome } = this.props;
+    const { incomeItems } = this.state;
+    // add new income in income array
+    incomeItems.push({ amount:amount,description:description });
+    this.setState({
+      incomeItems: incomeItems,
+      showModal:false,
+    });
+    updateIncome(amount);
+  }
 
   handleClose = () => {
     this.setState({
@@ -65,7 +77,7 @@ class Income extends Component {
     console.log("income render called");
     return (
       <>
-        <AddAmount showModal={showModal} handleClose={this.handleClose} />
+        <AddAmount showModal={showModal} handleClose={this.handleClose} handleAdd={this.incomeAdded} title={"Add Income"}/>
         <div className="shadow p-3 bg-success">
           <Container>
             <Row>

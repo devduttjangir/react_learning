@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Alert, Button, Container, Row, Col, ListGroup } from "react-bootstrap";
 import "./style.css";
+import AddAmount from "../AddAmount";
+
+import FinanceItem from "../Finance/FinanceItem";
 
 class Expense extends Component {
   constructor(props) {
@@ -8,11 +11,12 @@ class Expense extends Component {
     this.state = {
       expenseItems: [],
       showAlert: false,
+      showModal: false,
     };
   }
 
   addExpense = () => {
-    const { updateExpense } = this.props;
+  /*  const { updateExpense } = this.props;
     const { expenseItems } = this.state;
     expenseItems.push({
       expenseTitle: "New Expense Created " + new Date().toDateString(),
@@ -22,15 +26,44 @@ class Expense extends Component {
       // showAlert: true,
     });
     updateExpense(100);
+  */
+  this.setState({
+    showModal:true,
+
+  })
   };
 
   renderExpenses = () => {
     const { expenseItems } = this.state;
     return expenseItems.map((item) => {
-      return <ListGroup.Item>{item.expenseTitle}</ListGroup.Item>;
+      // return (<ListGroup.Item>{item.expenseTitle}</ListGroup.Item>);
+      return(
+         <ListGroup.Item>
+          <FinanceItem title={item.description+" "+item.expense}/>
+        </ListGroup.Item>
+      
+      );
     });
   };
+  expenseAdded=(expense,description)=>
+  { 
+    const { updateExpense } = this.props;
+    const { expenseItems } = this.state;
+    // add new income in income array
+    expenseItems.push({ expense:expense,description:description });
+    this.setState({
+      expenseItems: expenseItems,
+      showModal:false,
+    });
+    updateExpense(expense);
+  }
+handleClose=()=>{
+  this.setState({
+    showModal:false,
 
+
+  })
+}
   hideAlert = () => {
     this.setState({
       ...this.state,
@@ -39,9 +72,13 @@ class Expense extends Component {
   };
   render() {
     const { title, balance } = this.props;
-    const { showAlert } = this.state;
+    const { showAlert,showModal } = this.state;
+    
     return (
+
       <>
+     <AddAmount showModal={showModal} handleClose={this.handleClose} handleAdd={this.expenseAdded} title={"Add Expense"}/>
+        
         <div className="shadow p-3 bg-warning">
           {showAlert && (
             <Alert

@@ -18,8 +18,8 @@ class Root extends React.Component {
 
   updateIncome = (value) => {
     let { income, balance } = this.state;
-    income = income + value;
-    balance = balance + value;
+    income = income +parseInt(value);
+    balance = balance + parseInt(value);
     this.setState({
       ...this.state,
       income: income,
@@ -29,8 +29,8 @@ class Root extends React.Component {
 
   updateExpense = (value) => {
     let { expense, balance } = this.state;
-    expense = expense + value;
-    balance = balance - value;
+    expense = expense + parseInt(value);
+    balance = balance - parseInt(value);
     this.setState({
       ...this.state,
       expense: expense,
@@ -97,7 +97,7 @@ class Root extends React.Component {
         </Row>
         <Row>
           <Col>
-            <TimeTable />
+            {/* <TimeTable /> */}
           </Col>
         </Row>
       </Container>
