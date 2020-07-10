@@ -1,7 +1,26 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 
-export default class Home extends Component {
+class Home extends Component {
+  navigateToAbout = () => {
+    const { history } = this.props;
+    history.push("/about");
+  };
+
   render() {
-    return <div>Home</div>;
+    console.log(this.props);
+    return (
+      <div>
+        <div
+          className="btn bg-primary mx-2"
+          onClick={() => this.navigateToAbout()}
+        >
+          AboutUS
+        </div>
+        Home
+      </div>
+    );
   }
 }
+// HOC (High Order Component)
+export default withRouter(Home);
