@@ -12,7 +12,7 @@ import ExpenseTracker from "./ExpenseTracker/ExpenseTracker";
 class Root extends React.Component {
   constructor() {
     super();
-    this.state = { loggedIn: false };
+    this.state = { loggedIn: false,count:0 };
   }
 
   handleLoggedIn = () => {
@@ -20,6 +20,36 @@ class Root extends React.Component {
       loggedIn: true,
     });
   };
+  IncrementCounter=()=>
+  {
+    const {count}=this.state;
+    this.setState ({
+      count:count+1
+    });
+    
+  }
+IncrementStorage=()=>
+  {
+    let value=localStorage.getItem("storagecount");
+    if(value)
+    {
+        value=value+1;
+        localStorage.setItem("storagecount",value);
+    } else
+    {
+      value=0;
+    }
+    return value;
+    
+  }
+  getStorageValue=()=>{
+  let value=localStorage.getItem("storagecount");
+    if(!value)
+    {
+        return 0;
+        }
+        return value;
+  }
 
   renderLogin = () => {
     return (
@@ -29,7 +59,10 @@ class Root extends React.Component {
     );
   };
   render() {
+    const {count}=this.state;
+const storagecount=this.getStorageValue();
     console.log("root loaded");
+
     return (
       <Container>
         <Row>
@@ -37,6 +70,8 @@ class Root extends React.Component {
             <Header />
           </Col>
         </Row>
+        <Row><Col><Button onClick={()=>this.IncrementCounter()}>add counter {count}</Button></Col>
+        <Col><Button onClick={()=>this.IncrementStorage()}>storage counter {storagecount}</Button></Col></Row>
         <Row>
           <Col>
             <Jumbotron>
