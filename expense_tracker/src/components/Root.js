@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Routes } from "../Utility/constants";
 import Header from "./Header/Header";
 import Home from "./Home/Home";
+import LoginPage from "./LoginPage/LoginPage"
 import AboutUS from "./AboutUS/AboutUS";
 import ContactUS from "./ContactUS/ContactUS";
 import Products from "./Products/Products";
@@ -15,11 +16,11 @@ class Root extends React.Component {
     this.state = { loggedIn: false,count:0 };
   }
 
-  handleLoggedIn = () => {
-    this.setState({
-      loggedIn: true,
-    });
-  };
+  // handleLoggedIn = () => {
+  //   this.setState({
+  //     loggedIn: true,
+  //   });
+  // };
   IncrementCounter=()=>
   {
     const {count}=this.state;
@@ -33,12 +34,13 @@ IncrementStorage=()=>
     let value=localStorage.getItem("storagecount");
     if(value)
     {
-        value=value+1;
-        localStorage.setItem("storagecount",value);
-    } else
+        value=parseInt(value)+1;
+        } else
     {
       value=0;
     }
+    localStorage.setItem("storagecount",value);
+    
     return value;
     
   }
@@ -54,9 +56,9 @@ IncrementStorage=()=>
   renderLogin = () => {
     return (
       <div>
-        <Button onClick={() => this.handleLoggedIn()}>Login</Button>
-      </div>
-    );
+         <Button onClick={() => <LoginPage/>}>Login</Button>
+       </div>
+     );
   };
   render() {
     const {count}=this.state;
@@ -105,12 +107,16 @@ const storagecount=this.getStorageValue();
                 <Route path={Routes.home}>
                   <Home />
                 </Route>
+                <Route path={Routes.Login}>
+                  <LoginPage />
+                </Route>
+              
               </Switch>
             </Router>
           </Col>
         </Row>
       </Container>
-    );
+       );
   }
 }
 
