@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Routes } from "../Utility/constants";
 import Header from "./Header/Header";
 import Home from "./Home/Home";
-import LoginPage from "./LoginPage/LoginPage"
+import LoginPage from "./LoginPage/LoginPage";
 import AboutUS from "./AboutUS/AboutUS";
 import ContactUS from "./ContactUS/ContactUS";
 import Products from "./Products/Products";
@@ -13,7 +13,7 @@ import ExpenseTracker from "./ExpenseTracker/ExpenseTracker";
 class Root extends React.Component {
   constructor() {
     super();
-    this.state = { loggedIn: false,count:0 };
+    this.state = { loggedIn: false, count: 0 };
   }
 
   // handleLoggedIn = () => {
@@ -21,48 +21,41 @@ class Root extends React.Component {
   //     loggedIn: true,
   //   });
   // };
-  IncrementCounter=()=>
-  {
-    const {count}=this.state;
-    this.setState ({
-      count:count+1
+  IncrementCounter = () => {
+    const { count } = this.state;
+    this.setState({
+      count: count + 1,
     });
-    
-  }
-IncrementStorage=()=>
-  {
-    let value=localStorage.getItem("storagecount");
-    if(value)
-    {
-        value=parseInt(value)+1;
-        } else
-    {
-      value=0;
+  };
+  IncrementStorage = () => {
+    let value = localStorage.getItem("storagecount");
+    if (value) {
+      value = parseInt(value) + 1;
+    } else {
+      value = 0;
     }
-    localStorage.setItem("storagecount",value);
-    
+    localStorage.setItem("storagecount", value);
+
     return value;
-    
-  }
-  getStorageValue=()=>{
-  let value=localStorage.getItem("storagecount");
-    if(!value)
-    {
-        return 0;
-        }
-        return value;
-  }
+  };
+  getStorageValue = () => {
+    let value = localStorage.getItem("storagecount");
+    if (!value) {
+      return 0;
+    }
+    return value;
+  };
 
   renderLogin = () => {
     return (
       <div>
-         <Button onClick={() => <LoginPage/>}>Login</Button>
-       </div>
-     );
+        <Button onClick={() => <LoginPage />}>Login</Button>
+      </div>
+    );
   };
   render() {
-    const {count}=this.state;
-const storagecount=this.getStorageValue();
+    const { count } = this.state;
+    const storagecount = this.getStorageValue();
     console.log("root loaded");
 
     return (
@@ -72,8 +65,18 @@ const storagecount=this.getStorageValue();
             <Header />
           </Col>
         </Row>
-        <Row><Col><Button onClick={()=>this.IncrementCounter()}>add counter {count}</Button></Col>
-        <Col><Button onClick={()=>this.IncrementStorage()}>storage counter {storagecount}</Button></Col></Row>
+        <Row>
+          <Col>
+            <Button onClick={() => this.IncrementCounter()}>
+              add counter {count}
+            </Button>
+          </Col>
+          <Col>
+            <Button onClick={() => this.IncrementStorage()}>
+              storage counter {storagecount}
+            </Button>
+          </Col>
+        </Row>
         <Row>
           <Col>
             <Jumbotron>
@@ -104,19 +107,18 @@ const storagecount=this.getStorageValue();
                 <Route path={Routes.expense}>
                   <ExpenseTracker />
                 </Route>
+                <Route path={Routes.login}>
+                  <LoginPage />
+                </Route>
                 <Route path={Routes.home}>
                   <Home />
                 </Route>
-                <Route path={Routes.Login}>
-                  <LoginPage />
-                </Route>
-              
               </Switch>
             </Router>
           </Col>
         </Row>
       </Container>
-       );
+    );
   }
 }
 
