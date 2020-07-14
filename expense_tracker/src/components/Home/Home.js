@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Container, Row, Col, Image } from "react-bootstrap";
+import { Container, Row, Col, Card, Image } from "react-bootstrap";
 
 class Home extends Component {
   constructor() {
@@ -22,13 +22,25 @@ class Home extends Component {
 
   renderPhotos = () => {
     const { data } = this.state;
-    return data.map((item, index) => {
+    return data.map((item) => {
+      const username = item.user.name;
+      const likes = item.likes;
+      const thumbnail = item.urls.thumb;
+      const description = item.description || item.alt_description;
       return (
-        <Row>
-          <Col>
-            <Image src={item.urls["regular"]} rounded />
-          </Col>
-        </Row>
+        <Col className="col-4 py-1">
+          <Card>
+            <Card.Img variant="top" src={thumbnail} />
+            <Card.Body>
+              <Card.Title>{username}</Card.Title>
+              <Card.Text>{description}</Card.Text>
+            </Card.Body>
+            <Card.Footer className="text-muted">
+              <i class="fa fa-thumbs-up" aria-hidden="true"></i> {likes}
+            </Card.Footer>
+          </Card>
+          {/* <Image src={item.urls["regular"]} rounded width="100%" /> */}
+        </Col>
       );
     });
   };
@@ -36,13 +48,9 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <div
-          className="btn bg-primary mx-2"
-          onClick={() => this.navigateToAbout()}
-        >
-          AboutUS
-        </div>
-        <Container>{this.renderPhotos()}</Container>
+        <Container>
+          <Row>{this.renderPhotos()}</Row>
+        </Container>
       </div>
     );
   }
