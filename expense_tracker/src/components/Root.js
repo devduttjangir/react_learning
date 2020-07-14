@@ -8,6 +8,8 @@ import LoginPage from "./LoginPage/LoginPage";
 import AboutUS from "./AboutUS/AboutUS";
 import ContactUS from "./ContactUS/ContactUS";
 import Products from "./Products/Products";
+import Collections from "./Collections/Collections";
+
 import ExpenseTracker from "./ExpenseTracker/ExpenseTracker";
 
 class Root extends React.Component {
@@ -109,6 +111,9 @@ class Root extends React.Component {
                 </Route>
                 <Route path={Routes.login}>
                   <LoginPage />
+                </Route>
+                <Route path={Routes.collections} >
+                <Collections/>
                 </Route>
                 <Route path={Routes.home}>
                   <Home />

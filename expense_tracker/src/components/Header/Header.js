@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Navbar, Nav } from "react-bootstrap";
+import {Routes} from "../../Utility/constants";
 export default class Header extends Component {
   render() {
     return (
@@ -12,6 +13,8 @@ export default class Header extends Component {
             <Nav.Link href="/contact">Contact</Nav.Link>
             <Nav.Link href="/product">Product</Nav.Link>
             <Nav.Link href="/expense">ExpenseTracker</Nav.Link>
+           <Nav.Link href={Routes.collections}>Collections</Nav.Link>
+           
            <Nav.Link href="/login">Login</Nav.Link>
           
           </Nav>

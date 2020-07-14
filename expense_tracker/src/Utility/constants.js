@@ -4,5 +4,6 @@ export const Routes = {
   product: "/product",
   expense: "/expense",
   home: "/",
-login: "/login",}
+login: "/login",
+collections: "/collections",}
 ;
