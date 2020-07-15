@@ -5,5 +5,6 @@ export const Routes = {
   expense: "/expense",
   home: "/",
 login: "/login",
-collections: "/collections",}
+collections: "/collections",
+collectiondetails:"/collections/details",}
 ;

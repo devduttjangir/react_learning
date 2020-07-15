@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-
+import {Routes} from "../../Utility/constants"; 
+import {Link} from "react-router-dom";
 export default class Collections extends Component {
   constructor(props) {
     super(props);
@@ -10,7 +11,7 @@ export default class Collections extends Component {
   renderCollections = () => {
     const { collections } = this.state;
     return collections.map((collection) => {
-      const { title, description, thumbnail, username } = collection;
+      const { title, description, thumbnail, username,id } = collection;
       return (
         <Col className="col-4 d-flex flex-grow-1 p-2">
           <Card style={{ width: "18rem" }}>
@@ -22,7 +23,8 @@ export default class Collections extends Component {
               <Card.Text>{description}</Card.Text>
             </Card.Body>
             <Card.Footer>
-              <Card.Link href="#">View Collection</Card.Link>
+              {/* <Card.Link href={Routes.collectiondetails+"/"+id}>View Collection</Card.Link> */}
+              <Link to={Routes.collectiondetails+"/"+id}>View collection</Link>
             </Card.Footer>
           </Card>
         </Col>
@@ -37,6 +39,7 @@ export default class Collections extends Component {
         description: item.description,
         thumbnail: item.cover_photo.urls.small,
         username: item.cover_photo.user.name,
+        id:item.id,
       };
     });
     this.setState({

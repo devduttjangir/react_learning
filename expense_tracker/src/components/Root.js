@@ -9,7 +9,7 @@ import AboutUS from "./AboutUS/AboutUS";
 import ContactUS from "./ContactUS/ContactUS";
 import Products from "./Products/Products";
 import Collections from "./Collections/Collections";
-
+import Details from "./Collections/Details";
 import ExpenseTracker from "./ExpenseTracker/ExpenseTracker";
 
 class Root extends React.Component {
@@ -112,9 +112,13 @@ class Root extends React.Component {
                 <Route path={Routes.login}>
                   <LoginPage />
                 </Route>
+                <Route path={Routes.collectiondetails+"/:collectionId"}>
+                <Details/>
+                </Route>
                 <Route path={Routes.collections}>
                   <Collections />
                 </Route>
+                
                 <Route path={Routes.home}>
                   <Home />
                 </Route>
