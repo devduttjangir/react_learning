@@ -112,8 +112,8 @@ class Root extends React.Component {
                 <Route path={Routes.login}>
                   <LoginPage />
                 </Route>
-                <Route path={Routes.collections} >
-                <Collections/>
+                <Route path={Routes.collections}>
+                  <Collections />
                 </Route>
                 <Route path={Routes.home}>
                   <Home />
