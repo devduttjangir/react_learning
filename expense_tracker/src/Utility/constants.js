@@ -6,5 +6,6 @@ export const Routes = {
   home: "/",
 login: "/login",
 collections: "/collections",
-collectiondetails:"/collections/details",}
+collectiondetails:"/collections/details",
+todos:"/todos",}
 ;

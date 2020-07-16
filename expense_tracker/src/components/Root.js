@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Routes } from "../Utility/constants";
 import Header from "./Header/Header";
 import Home from "./Home/Home";
+import ToDos from "./ToDos/ToDos";
 import LoginPage from "./LoginPage/LoginPage";
 import AboutUS from "./AboutUS/AboutUS";
 import ContactUS from "./ContactUS/ContactUS";
@@ -118,8 +119,11 @@ class Root extends React.Component {
                 <Route path={Routes.collections}>
                   <Collections />
                 </Route>
+                <Route exact path={Routes.todos}>
+                  <ToDos />
+                </Route>
                 
-                <Route path={Routes.home}>
+                <Route exact path={Routes.home}>
                   <Home />
                 </Route>
               </Switch>
