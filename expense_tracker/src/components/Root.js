@@ -1,17 +1,18 @@
-import React from "react";
-import { Container, Row, Col, Jumbotron, Button } from "react-bootstrap";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Routes } from "../Utility/constants";
-import Header from "./Header/Header";
-import Home from "./Home/Home";
-import ToDos from "./ToDos/ToDos";
-import LoginPage from "./LoginPage/LoginPage";
+import { Button, Col, Container, Jumbotron, Row } from "react-bootstrap";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+
 import AboutUS from "./AboutUS/AboutUS";
-import ContactUS from "./ContactUS/ContactUS";
-import Products from "./Products/Products";
 import Collections from "./Collections/Collections";
+import ContactUS from "./ContactUS/ContactUS";
 import Details from "./Collections/Details";
 import ExpenseTracker from "./ExpenseTracker/ExpenseTracker";
+import Header from "./Header/Header";
+import Home from "./Home/Home";
+import LoginPage from "./LoginPage/LoginPage";
+import Products from "./Products/Products";
+import React from "react";
+import { Routes } from "../Utility/constants";
+import ToDos from "./ToDos/ToDos";
 
 class Root extends React.Component {
   constructor() {
@@ -105,7 +106,7 @@ class Root extends React.Component {
                   <ContactUS />
                 </Route>
                 <Route path={Routes.product}>
-                  {this.state.loggedIn ? <Products /> : this.renderLogin()}
+                  <Products />
                 </Route>
                 <Route path={Routes.expense}>
                   <ExpenseTracker />
@@ -113,8 +114,8 @@ class Root extends React.Component {
                 <Route path={Routes.login}>
                   <LoginPage />
                 </Route>
-                <Route path={Routes.collectiondetails+"/:collectionId"}>
-                <Details/>
+                <Route path={Routes.collectiondetails + "/:collectionId"}>
+                  <Details />
                 </Route>
                 <Route path={Routes.collections}>
                   <Collections />
@@ -122,7 +123,7 @@ class Root extends React.Component {
                 <Route exact path={Routes.todos}>
                   <ToDos />
                 </Route>
-                
+
                 <Route exact path={Routes.home}>
                   <Home />
                 </Route>
